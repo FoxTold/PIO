@@ -23,5 +23,5 @@ Diagram UML:
 - [GAME]0..1<>-*[MATCH] 
 - [GAME OBJECT]^-[TABLE] 
 - [GAME OBJECT]^-[MATCH]
-- [Interface\nTAKES FROM TABLE] <- implementuje [PLAYER] 
-- [Interface\nTAKES FROM TABLE] <- implementuje  [CPU] 
+- [Interface\nTAKES FROM TABLE] ^-.- implementuje [PLAYER] 
+- [Interface\nTAKES FROM TABLE] ^-.- implementuje  [CPU] 
