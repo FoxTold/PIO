@@ -8,6 +8,7 @@ public class zapalkaController : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Dziala");
+        Destroy(this.gameObject);
     }
     void Start()
     {
