@@ -9,8 +9,8 @@ https://en.wikipedia.org/wiki/Nim#The_subtraction_game
 
 Backlog:
 1. Istnieje "stół" dla obiektów
-2. Można usuwać obiekty
-3. Obiekty są umieszczane na planszy
+2. Obiekty są umieszczane na planszy
+3. Można usuwać obiekty
 4. Gra kończy się po usunięciu ostatniego obiektu
 5. Gra podzielona jest na tury
 6. Gracze są zmuszeni do przestrzegania zasad
@@ -18,7 +18,7 @@ Backlog:
 
 Diagram UML:
 - [GAME]1<>-1..2[PLAYER]
-- [GAME]1<>-0..1[CPU]
+- [GAME]1<>-0..1[BOT]
 - [GAME]1<>-1[TABLE] 
 - [GAME]0..1<>-*[MATCH] 
 - [GAME OBJECT]^-[TABLE] 
