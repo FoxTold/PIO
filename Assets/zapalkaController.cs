@@ -7,8 +7,17 @@ public class zapalkaController : MonoBehaviour
     // Start is called before the first frame update
     private void OnMouseDown()
     {
-        Debug.Log("Dziala");
-        Destroy(this.gameObject);
+        GameController.thisTurnTaken++;
+        if (GameController.thisTurnTaken == 3)
+        {
+            Destroy(this.gameObject);
+            GameController.changeTurn();
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+        
     }
     void Start()
     {
