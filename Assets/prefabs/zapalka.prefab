@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2980258933292226484}
   - component: {fileID: 2463828739675621531}
   - component: {fileID: -1589543855139318263}
+  - component: {fileID: 8110100307869823679}
   m_Layer: 0
   m_Name: zapalka
   m_TagString: Untagged
@@ -64,6 +65,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8110100307869823679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152067159527215010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e4d952055d30bc4aa8f227da59ab87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6463277182614443665
 GameObject:
   m_ObjectHideFlags: 0
