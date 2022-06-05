@@ -7,72 +7,78 @@ public class GameController : MonoBehaviour
 {
     public  GameObject prefab;
     private GameObject spawnPoint;
-    public int max_Zapalek = 10;
-    private List<GameObject> listOfZapalki = new List<GameObject>();
+    public int maxNumOfMatches = 10;
+    private List<GameObject> matchesList = new List<GameObject>();
 
-    private int current_Zapalek=0;
+    private int currentMatches = 0;
+    private bool gameOver = false;
 
-    private const string gracz1 = "Player1";
-    private const string gracz2 = "Player2";
+    private const string player1 = "Player 1";
+    private const string player2 = "Player 2";
 
-    private string current_Gracz;
+    private string currentPlayer;
 
     private string winner;
 
     private int possibleMoves = 3;
-    public GameObject napis;
-    private Text txt;
+    public GameObject napis; //topTextObj
+    private Text topText;
 
-    public GameObject winNapis;
+    public GameObject winNapis; //winTextObj
     private Text winText;
 
     // Start is called before the first frame update
     void Start()
     {
         winText = winNapis.GetComponent<Text>();
-        txt = napis.GetComponent<Text>();
-        current_Gracz = gracz1;
-        current_Zapalek = max_Zapalek;
+        topText = napis.GetComponent<Text>();
+        currentPlayer = player1;
+        currentMatches = maxNumOfMatches;
         spawnPoint = this.gameObject;
-        for(int i=0;i< max_Zapalek;i++)
+
+        for(int i = 0; i < maxNumOfMatches; i++)
         {
-            GameObject zap = Instantiate(prefab);
-            zap.transform.position = spawnPoint.transform.position;
-            listOfZapalki.Add(zap); 
+            GameObject m = Instantiate(prefab);
+            m.transform.position = spawnPoint.transform.position;
+            matchesList.Add(m); 
         }
-        txt.text = "Current player: " + current_Gracz;
+
+        topText.text = "Current player: " + currentPlayer;
 
     }
     public void removeZapalka(GameObject zapalka)
     {
-        listOfZapalki.Remove(zapalka);
-        current_Zapalek--;
+        matchesList.Remove(zapalka);
+        currentMatches--;
     }
     // Update is called once per frame
     void Update()
     {
-        if (current_Zapalek <=0)
+        if (matchesList.Count == 0 && !gameOver)
         {
-            winner = current_Gracz ;
+            winner = currentPlayer ;
             Debug.Log("Wygral: " + winner);
             winText.text = "Winner: " + winner;
-            current_Zapalek = 100000;
+            gameOver = true;
         }
     }
 
-    public void   ChangeCurrentPlayer()
+    public void ChangeCurrentPlayer()
     {
+        if (possibleMoves == 3) return;
+
         possibleMoves = 3;
-        current_Gracz = current_Gracz == gracz1 ? gracz2 : gracz1;
-        Debug.Log("Current player: " + current_Gracz);
-        txt.text = "Current player: " + current_Gracz;
-        Debug.Log(current_Zapalek);
+        currentPlayer = currentPlayer == player1 ? player2 : player1;
+        Debug.Log("Current player: " + currentPlayer);
+        topText.text = "Current player: " + currentPlayer;
+        Debug.Log(currentMatches);
     }
 
     public int getNumberOfMoves()
     {
         return possibleMoves;
     }
+
     public void decrementNumberOfMoves()
     {
         possibleMoves--;

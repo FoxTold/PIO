@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class zapalkaController : MonoBehaviour
+public class MatchController : MonoBehaviour
 {
     public GameController gamecontroller;
     // Start is called before the first frame update
