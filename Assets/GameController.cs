@@ -37,6 +37,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject counter;
     private Text counter_txt;
 
+    [SerializeField] private AudioSource winningSound;
+    [SerializeField] private AudioSource removingSound;
+    [SerializeField] private AudioSource noMoveSound;
+    [SerializeField] private AudioSource clickSound;
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,11 +73,17 @@ public class GameController : MonoBehaviour
         if (possibleMoves <= 2)
             match2.SetActive(false);
         if (possibleMoves <= 1)
+        {
             match1.SetActive(false);
+            noMoveSound.Play();
+        }
+        else
+            removingSound.Play();
 
         listOfZapalki.Remove(zapalka);
         button.SetActive(true);
         current_Zapalek--;
+        
     }
     // Update is called once per frame
     void Update()
@@ -91,6 +102,7 @@ public class GameController : MonoBehaviour
             match1.SetActive(false);
             match2.SetActive(false);
             Destroy(button);
+            winningSound.Play();
         }
     }
 
@@ -107,6 +119,7 @@ public class GameController : MonoBehaviour
             match1.SetActive(true);
             match2.SetActive(true);
             match3.SetActive(true);
+            clickSound.Play();
         }
     }
 
