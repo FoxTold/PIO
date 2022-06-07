@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 {
     public  GameObject prefab;
     private GameObject spawnPoint;
-    public int max_Zapalek = 10;
+    public int max_Zapalek = 120;
     private List<GameObject> listOfZapalki = new List<GameObject>();
 
     private int current_Zapalek=0;
@@ -25,10 +25,17 @@ public class GameController : MonoBehaviour
 
     public GameObject winNapis;
     private Text winText;
+    
+    [SerializeField] private GameObject button;
+    [SerializeField] private GameObject PlayAgain;
+    [SerializeField] private GameObject Menu;
 
     // Start is called before the first frame update
     void Start()
     {
+        button.SetActive(false);
+        PlayAgain.SetActive(false);
+        Menu.SetActive(false);
         winText = winNapis.GetComponent<Text>();
         txt = napis.GetComponent<Text>();
         current_Gracz = gracz1;
@@ -46,6 +53,7 @@ public class GameController : MonoBehaviour
     public void removeZapalka(GameObject zapalka)
     {
         listOfZapalki.Remove(zapalka);
+        button.SetActive(true);
         current_Zapalek--;
     }
     // Update is called once per frame
@@ -53,20 +61,28 @@ public class GameController : MonoBehaviour
     {
         if (current_Zapalek <=0)
         {
+            PlayAgain.SetActive(true);
+            Menu.SetActive(true);
             winner = current_Gracz ;
             Debug.Log("Wygral: " + winner);
+            txt.text = "";
             winText.text = "Winner: " + winner;
             current_Zapalek = 100000;
+            Destroy(button);
         }
     }
 
     public void   ChangeCurrentPlayer()
     {
-        possibleMoves = 3;
-        current_Gracz = current_Gracz == gracz1 ? gracz2 : gracz1;
-        Debug.Log("Current player: " + current_Gracz);
-        txt.text = "Current player: " + current_Gracz;
-        Debug.Log(current_Zapalek);
+        if( possibleMoves != 3 )
+        {
+            possibleMoves = 3;
+            current_Gracz = current_Gracz == gracz1 ? gracz2 : gracz1;
+            Debug.Log("Current player: " + current_Gracz);
+            txt.text = "Current player: " + current_Gracz;
+            Debug.Log(current_Zapalek);
+            button.SetActive(false);
+        }
     }
 
     public int getNumberOfMoves()
